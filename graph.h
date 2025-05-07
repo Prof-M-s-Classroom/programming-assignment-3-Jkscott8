@@ -25,11 +25,11 @@ public:
     {
         int weight = 0;
         std::vector<bool> visited(numVertices, false);
-        std::vector<int> key(numVertices);
-        std::vector<int> weights(numVertices);
+        std::vector<int> mst(numVertices);
+        std::vector<int> weights(numVertices, INT_MAX);
         MinHeap min_heap(numVertices);
         visited[0] = true;
-        key[0] = 0;
+        mst[0] = 0;
         weights[0] = 0;
         for (int k = 1; k < numVertices; k++) {
             for (int i = 0; i < numVertices-1; i++) {
@@ -41,14 +41,20 @@ public:
                     }
                 }
             }
-            weights[k] = min_heap.extractMinKey(0);
-            key[k] = min_heap.extractMin();
-            visited[key[k]] = true;
+            int weight =  min_heap.extractMinKey(0);
+            int vertex = min_heap.extractMin();
+            if (visited[vertex] == true) {
+                k--;
+                continue;
+            }
+            weights[k] = weight;
+            mst[k] = vertex;
+            visited[mst[k]] = true;
         }
         int total_weight = 0;
         for (int i = 0; i < numVertices; i++) {
             total_weight += weights[i];
-            std::cout << "Vertex: "<<key[i] <<" Edge-Weight: "<< weights[i] << std::endl;
+            std::cout << "Vertex: "<<mst[i] <<" Edge-Weight: "<< weights[i] << std::endl;
         }
         std::cout << "Total Weight: " << total_weight << std::endl;
     }

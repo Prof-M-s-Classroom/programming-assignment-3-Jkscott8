@@ -21,7 +21,6 @@ public:
 
     void insert(int vertex, int key) {
         if (size == capacity) {
-            std::cout << "Heap Is Full" << std::endl;
             return;
         }
         size++;
