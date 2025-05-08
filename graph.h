@@ -25,6 +25,7 @@ public:
     {
         int weight = 0;
         std::vector<bool> visited(numVertices, false);
+        std::vector<int> parent(numVertices);
         std::vector<int> mst(numVertices);
         std::vector<int> weights(numVertices, INT_MAX);
         MinHeap min_heap(numVertices);
@@ -51,10 +52,17 @@ public:
             mst[k] = vertex;
             visited[mst[k]] = true;
         }
+        for (int i = 1; i < numVertices; i++) {
+            for (int j = 0; j < numVertices; j++) {
+                if (adjMatrix[mst[i]][j] == weights[i]) {
+                    parent[i] = j;
+                }
+            }
+        }
         int total_weight = 0;
-        for (int i = 0; i < numVertices; i++) {
+        for (int i = 1; i < numVertices; i++) {
             total_weight += weights[i];
-            std::cout << "Vertex: "<<mst[i] <<" Edge-Weight: "<< weights[i] << std::endl;
+            std::cout << "Edge: "<< parent[i] <<'-'<< mst[i] <<" Edge-Weight: "<< weights[i] << std::endl;
         }
         std::cout << "Total Weight: " << total_weight << std::endl;
     }
