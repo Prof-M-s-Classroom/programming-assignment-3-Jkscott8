@@ -35,7 +35,7 @@ public:
         for (int i = 1; i < numVertices; i++) {
             min_heap.insert(i, INT_MAX);
         }
-        for (int j = 1; j < numVertices; j++) {
+        while (min_heap.isEmpty() == false) {
             int min = min_heap.extractMin();
             visited[min] = true;
             for (int i = 0; i < numVertices; i++) {
