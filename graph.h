@@ -26,46 +26,31 @@ public:
     }
     void primMST() // Must print MST edges and total weight
     {
-        int weight = 0;
+        MinHeap min_heap = MinHeap(numVertices);
         std::vector<bool> visited(numVertices, false);
         std::vector<int> parent(numVertices);
-        std::vector<int> mst(numVertices);
         std::vector<int> weights(numVertices, INT_MAX);
-        MinHeap min_heap(numVertices);
+        min_heap.insert(0,0);
         visited[0] = true;
-        mst[0] = 0;
-        weights[0] = 0;
-        for (int k = 1; k < numVertices; k++) {
-            for (int i = 0; i < numVertices-1; i++) {
-                if (visited[i] == true) {
-                    for (int j = 0; j < numVertices; j++) {
-                        if (adjMatrix[i][j] != INT_MAX && visited[j] == false) {
-                            min_heap.insert(j, adjMatrix[i][j]);
-                        }
-                    }
-                }
-            }
-            int weight =  min_heap.extractMinKey(0);
-            int vertex = min_heap.extractMin();
-            if (visited[vertex] == true) {
-                k--;
-                continue;
-            }
-            weights[k] = weight;
-            mst[k] = vertex;
-            visited[mst[k]] = true;
-        }
         for (int i = 1; i < numVertices; i++) {
-            for (int j = 0; j < numVertices; j++) {
-                if (adjMatrix[mst[i]][j] == weights[i]) {
-                    parent[i] = j;
+            min_heap.insert(i, INT_MAX);
+        }
+        for (int j = 1; j < numVertices; j++) {
+            int min = min_heap.extractMin();
+            visited[min] = true;
+            for (int i = 0; i < numVertices; i++) {
+                if (adjMatrix[min][i] < weights[i] && adjMatrix[min][i] != INT_MAX && visited[i] == false) {
+                    min_heap.decreaseKey(i, adjMatrix[min][i]);
+                    parent[i] = min;
+                    weights[i] = adjMatrix[min][i];
                 }
             }
         }
         int total_weight = 0;
         for (int i = 1; i < numVertices; i++) {
-            total_weight += weights[i];
-            std::cout << "Edge: "<< parent[i] <<'-'<< mst[i] <<" Edge-Weight: "<< weights[i] << std::endl;
+            int weight = adjMatrix[parent[i]][i];
+            total_weight += weight;
+            std::cout << "Edge: "<< parent[i] <<'-'<< i <<" Edge-Weight: "<< weight << std::endl;
         }
         std::cout << "Total Weight: " << total_weight << std::endl;
     }

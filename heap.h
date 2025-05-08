@@ -26,7 +26,7 @@ public:
         size++;
         int i = size - 1;
         heapArray[i] = vertex;
-        position[vertex] = i;
+        position[vertex] = vertex;
         keyArray[vertex] = key;
         while (i != 0 && keyArray[heapArray[(i-1)/2]] > keyArray[heapArray[i]]) {
             int swap = heapArray[(i-1)/2];
@@ -50,9 +50,7 @@ public:
         return minVal;
 
     }
-    int extractMinKey(int vertex) {
-        return keyArray[heapArray[vertex]];
-    }
+
     void decreaseKey(int vertex, int newKey) {
         keyArray[vertex] = newKey;
         int i = position[vertex];
