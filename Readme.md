@@ -37,7 +37,7 @@ Extract Min O(log v):
 The operation of returning the min itself is O(1) because it is just giving the value at the root index(0), but after doing so it has to "heapify", this causes the run time to be log(n) because similar to insert the worst case is the new smallest value is at the bottom so it has to swap at every level of the tree. 
 
 Decrease Key O(log v): 
-Similar to the last one the operation of decreasing the key takes O(1), but then if the key being decreased isn't at the root and it is now the smallest one it would take up to log(n) swaps. I may have understood what min key was supposed to be honestly, but mine runs to log(n).
+Similar to the last one the operation of decreasing the key takes O(1), but then if the key being decreased isn't at the root and it is now the smallest one it would take up to log(n) swaps. I may have not understood what min key was supposed to be honestly, but mine runs to log(n).
 
 Prim's MST (V^2): 
 The main part of my prims MST runs to V^2 because there is 2 nested loops that run V(number of vertices) and V-1 times so multiplying those together gets you V^2, the first loop is extracting each vertex and the second is finding the min path, and that is the biggest time operation in the prim mst. This isn't great runtime, but with a max of 10 vertices it isn't too bad.  
