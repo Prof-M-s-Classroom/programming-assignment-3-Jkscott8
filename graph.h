@@ -71,8 +71,6 @@ public:
     }
 
 
-
-
 private:
     int** adjMatrix;
     int numVertices;

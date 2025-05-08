@@ -71,5 +71,5 @@ Total Weight: 16
 
 
 Challenges Faced:
-I started the assignment before the tuesday class so it was a little confusing trying to figure out how everything was supposed to work, I was able to implement everything except the primMST before the class because W3 Schools had some good resources explaining it. I also had some trouble with the vectors in C++ because my into class was in Python not Java. 
+I started the assignment before the tuesday class so it was a little confusing trying to figure out how everything was supposed to work, I was able to implement everything except the primMST before the class because W3 Schools had some good resources explaining it. I also had some trouble with the arrays in C++ because my into class was in Python not Java, so I was new to handling those. 
 I surprisingly didn't really get errors, but I did have a lot of trouble with the primMST function because it kept giving me the same vertex multiple times, it also sometimes gave me not the min edge weight, but I eventually was able to fix it through trial and error. 
